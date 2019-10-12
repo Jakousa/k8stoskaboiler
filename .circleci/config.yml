@@ -2,9 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
 
-# tools for google cloud
 orbs:
   gcp-cli: circleci/gcp-cli@1.8.2
   gcp-gke: circleci/gcp-gke@0.2.0
