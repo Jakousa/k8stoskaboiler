@@ -11,14 +11,6 @@ services:
     ports:
       - 8000:8000
     container_name: toskaboiler_dev
-  db:
-    image: postgres:11
-    container_name: toskaboiler_db
-    environment:
-      - PGDATA=/data
-      - POSTGRES_PASSWORD=postgres
-    volumes:
-      - pg_data:/data
 
 volumes:
   pg_data:
