@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: jami-k8stoskaboiler
+  name: jami-k8stoskaboiler
+  namespace: workshop
+
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: jami-k8stoskaboiler

@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: workshop
+  name: jami-k8stoskaboiler
+  labels:
+    app: jami-k8stoskaboiler
+
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jami-k8stoskaboiler
+
+  template:
+    metadata:
+      labels:
+        app: jami-k8stoskaboiler
+      annotations:
+    spec:
+      containers:
+        - image: gcr.io/unity-ads-workshop-test/jami-k8stoskaboiler:master
+          name: jami-k8stoskaboiler
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 128Mi
+            limits:
+              cpu: 0.5
+              memory: 1024Mi
+          env:
+            - name: SOME_ENV_VARIABLE
+              value: some env value
+
+      nodeSelector:
+        cloud.google.com/gke-nodepool: workshop-pool

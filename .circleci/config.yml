@@ -35,7 +35,7 @@ jobs:
             gcloud auth activate-service-account ${WORKSHOP_CI_USER} --key-file=.WORKSHOP_CI_ACCOUNT_TOKEN.json >/dev/null 2>&1
             gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io >/dev/null 2>&1
             set -x
-            image=gcr.io/unity-ads-workshop-test/k8stoskaboiler
+            image=gcr.io/unity-ads-workshop-test/jami-k8stoskaboiler
             docker build -t ${image}:${CIRCLE_SHA1} .
             docker push ${image}:${CIRCLE_SHA1}
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
@@ -59,7 +59,7 @@ jobs:
             set -x
             gcloud container clusters get-credentials ${WORKSHOP_CLUSTER} --zone ${WORKSHOP_CLUSTER_ZONE} --project ${WORKSHOP_GCP_PROJECT}
             kubectl config current-context
-            service=k8stoskaboiler
+            service=jami-k8stoskaboiler
             namespace=workshop
             if kubectl get service ${service}-lb -n ${namespace} > /dev/null; then
               kubectl delete service ${service}-lb -n ${namespace};
